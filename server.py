@@ -38,3 +38,6 @@ def broadcast(message, connection):
                 clients.close() 
                 remove(clients) 
 
+def remove(connection): 
+    if connection in list_of_clients: 
+        list_of_clients.remove(connection) 
