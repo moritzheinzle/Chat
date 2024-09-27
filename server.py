@@ -29,3 +29,12 @@ def clientthread(conn, addr):
                     remove(conn) 
             except: 
                 continue
+def broadcast(message, connection): 
+    for clients in list_of_clients: 
+        if clients!=connection: 
+            try: 
+                clients.send(message) 
+            except: 
+                clients.close() 
+                remove(clients) 
+
