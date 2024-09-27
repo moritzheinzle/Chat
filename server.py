@@ -15,3 +15,17 @@ server.bind((IP_address, Port))
 server.listen(100) 
 list_of_clients = [] 
 
+def clientthread(conn, addr): 
+    conn.send("Welcome to this chatroom!") 
+ 
+    while True: 
+            try: 
+                message = conn.recv(2048) 
+                if message: 
+                    print ("<" + addr[0] + "> " + message)  
+                    message_to_send = "<" + addr[0] + "> " + message 
+                    broadcast(message_to_send, conn) 
+                else: 
+                    remove(conn) 
+            except: 
+                continue
