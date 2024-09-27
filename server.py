@@ -41,3 +41,11 @@ def broadcast(message, connection):
 def remove(connection): 
     if connection in list_of_clients: 
         list_of_clients.remove(connection) 
+while True: 
+    conn, addr = server.accept() 
+    list_of_clients.append(conn) 
+    print (addr[0] + " connected")
+    start_new_thread(clientthread,(conn,addr))     
+ 
+conn.close() 
+server.close() 
